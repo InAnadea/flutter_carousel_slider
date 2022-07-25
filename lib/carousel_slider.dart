@@ -257,7 +257,8 @@ class CarouselSliderState extends State<CarouselSlider>
         return Transform.scale(
           scale: scale,
           child: FakeDevicePixelRatio(
-            fakeDevicePixelRatio: scale ?? 1,
+            fakeDevicePixelRatio:
+                WidgetsBinding.instance.window.devicePixelRatio * (scale ?? 1),
             child: SizedBox(
               width: width,
               height: height,
