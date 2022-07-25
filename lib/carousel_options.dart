@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum CarouselPageChangedReason { timed, manual, controller }
 
-enum CenterPageEnlargeStrategy { scale, height }
+enum CenterPageEnlargeStrategy { scale, height, dpiScale }
 
 class CarouselOptions {
   /// Set carousel height and overrides any existing [aspectRatio].

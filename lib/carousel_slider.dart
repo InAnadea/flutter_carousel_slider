@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 
 import 'carousel_controller.dart';
 import 'carousel_options.dart';
+import 'dpi_widget.dart';
 import 'utils.dart';
 
 export 'carousel_controller.dart';
@@ -228,14 +229,42 @@ class CarouselSliderState extends State<CarouselSlider>
     return Center(child: child);
   }
 
-  Widget getEnlargeWrapper(Widget? child,
-      {double? width, double? height, double? scale}) {
-    if (widget.options.enlargeStrategy == CenterPageEnlargeStrategy.height) {
-      return SizedBox(child: child, width: width, height: height);
+  Widget getEnlargeWrapper(
+    Widget? child, {
+    double? width,
+    double? height,
+    double? scale,
+  }) {
+    switch (widget.options.enlargeStrategy) {
+      case CenterPageEnlargeStrategy.scale:
+        return Transform.scale(
+          scale: scale!,
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: child,
+          ),
+        );
+
+      case CenterPageEnlargeStrategy.height:
+        return SizedBox(
+          child: child,
+          width: width,
+          height: height,
+        );
+
+      case CenterPageEnlargeStrategy.dpiScale:
+        var dpi =
+            WidgetsBinding.instance.window.devicePixelRatio / 2 - (scale ?? 1);
+        return FakeDevicePixelRatio(
+          fakeDevicePixelRatio: dpi,
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: child,
+          ),
+        );
     }
-    return Transform.scale(
-        scale: scale!,
-        child: Container(child: child, width: width, height: height));
   }
 
   void onStart() {
