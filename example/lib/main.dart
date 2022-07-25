@@ -236,7 +236,7 @@ class EnlargeStrategyDemo extends StatelessWidget {
             autoPlay: true,
             aspectRatio: 2.0,
             enlargeCenterPage: true,
-            enlargeStrategy: CenterPageEnlargeStrategy.height,
+            enlargeStrategy: CenterPageEnlargeStrategy.dpiScale,
           ),
           items: imageSliders,
         ),
