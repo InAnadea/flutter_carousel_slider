@@ -254,12 +254,10 @@ class CarouselSliderState extends State<CarouselSlider>
         );
 
       case CenterPageEnlargeStrategy.dpiScale:
-        var dpi =
-            WidgetsBinding.instance.window.devicePixelRatio / (scale ?? 1);
         return Transform.scale(
           scale: scale,
           child: FakeDevicePixelRatio(
-            fakeDevicePixelRatio: dpi,
+            fakeDevicePixelRatio: scale ?? 1,
             child: SizedBox(
               width: width,
               height: height,
